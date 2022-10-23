@@ -107,7 +107,7 @@ public class Task
         }
     }
 
-    public static void SelectionSort(int[] arr,Boolean rev) //Сортування методом вибором
+    public static void SelectionSort(int[] arr,Boolean rev) //Сортування вибором
     {
         for (int i = 0; i < arr.Length - 1; i++)
         {
