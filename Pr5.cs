@@ -66,7 +66,7 @@ public class Task
             }
         }
 
-        pivot++;        //Кладемо останій елемент масиву,на місце півоти
+        pivot++;        //Кладемо останій елемент масиву на місце півоти
         Swap(ref arr[pivot], ref arr[maxIndex]);
 
         return pivot;
