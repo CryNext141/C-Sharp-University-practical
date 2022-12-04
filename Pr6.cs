@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic;
+using Microsoft.VisualBasic;
 using System;
 using System.Data;
 using System.Linq.Expressions;
@@ -32,7 +32,7 @@ public class Task
                     goto case 0;
 
                 case 2:
-                    addManual(Queue, N);
+                    addManually(Queue, N);
                     isCorretTrue = true;
                     goto case 0;
 
@@ -48,7 +48,7 @@ public class Task
         } while (!isCorretTrue);
     }
 
-    public static void Options(Queue<int> Queue)
+    public static void Options(Queue<int> Queue)        //Метод для вибору дії
     {
         bool isCorrectInput = false;
         do
@@ -79,7 +79,7 @@ public class Task
 
     }
 
-    public static Queue<int> initQueue(int l)
+    public static Queue<int> initQueue(int l)       // Метод для ініціалізація черги
     {
         Queue<int> elements = new Queue<int>();
         
@@ -97,7 +97,7 @@ public class Task
     return queue;
     }
     
-    public static Queue<int> addRandom(Queue<int> queue,int l)
+    public static Queue<int> addRandom(Queue<int> queue,int l)      //Рандомне заповнення черги
     {
         Random rand = new Random();
 
@@ -113,7 +113,7 @@ public class Task
     return queue;
     }
 
-    public static Queue<int> addManual(Queue<int> queue,int l)
+    public static Queue<int> addManually(Queue<int> queue,int l)      //Ручнний ввід значень черги
     {
         for (int i = 0; i < l; i++)
         {
@@ -125,7 +125,7 @@ public class Task
     return queue;
     }
 
-    public static Queue<int> remove(Queue<int> queue)
+    public static Queue<int> remove(Queue<int> queue)       //Видалення елементів з черги
     {
         Console.WriteLine("How many queue items you want to delete?\r\n");
         int c = Convert.ToInt32(Console.ReadLine());
@@ -154,7 +154,7 @@ public class Task
     return queue;
     }
 
-    public static Queue<int> count(Queue<int> queue)
+    public static Queue<int> count(Queue<int> queue)        //Повернення кількості елементів в черзі
     {
         Console.WriteLine("Elements in the queue - " + queue.Count);
 
