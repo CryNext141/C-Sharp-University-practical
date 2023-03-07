@@ -1,24 +1,20 @@
-﻿using System;
+using System;
 namespace Main
 {
     //Я встиг повернутися в шкільні часи поки писав цей код,що це взагалі ці ваші дроби?
     public class Task
-        //В планах було зробити ввід значень з клавіатури,а також вибір операції...Але я так хочу спати
     {
         static void Main(string[] args)
         {
-            Fraction deniminator = new Fraction(/*5*/1, /*7*/2);
-            Fraction numerator = new Fraction(1, /*4*/3);  
-            Fraction reduc = new Fraction(8, 8);
+            Fraction deniminator =  Fraction.getFraction();
+            Fraction numerator = Fraction.getFraction();
+            Fraction reduc = Fraction.getFraction();
+            Console.Clear();
 
-            Console.WriteLine($"Addition: {deniminator + numerator}");
-            Console.WriteLine($"Subtraction: {deniminator - numerator}");
-            Console.WriteLine($"Multiplication: {deniminator * numerator}");
-            Console.WriteLine($"Division: {deniminator / numerator}");
-            Console.WriteLine($"Reduction: {reduc.reductionFraction()}");
+            Fraction.Print("0");
+            Fraction.Options(deniminator, numerator, reduc);
         }
     }
-
     class Fraction
     {
         public int numerator { get; }
@@ -36,7 +32,7 @@ namespace Main
 
         //Знаю,що в умові сказано назвати методи аля addition,но я пішов шляхом перевантаженням операторів
         //Тим більше,що на сайтів майків є хороший приклад з дробами
-        
+
         public static Fraction operator +(Fraction num1, Fraction num2) //Метод який ретурнить суму
         {
             int lcm = getLCM(num1.denominator, num2.denominator);
@@ -44,6 +40,7 @@ namespace Main
 
             return new Fraction(numerator, lcm).reductionFraction();
         }
+
 
         public static Fraction operator -(Fraction num1, Fraction num2) //Метод який ретурнить різницю
         {
@@ -53,6 +50,7 @@ namespace Main
             return new Fraction(numerator, lcm).reductionFraction();
         }
 
+
         public static Fraction operator *(Fraction num1, Fraction num2) //Метод який ретурнить добуток
         {
             int numerator = num1.numerator * num2.numerator;
@@ -60,6 +58,7 @@ namespace Main
 
             return new Fraction(numerator, denominator).reductionFraction();
         }
+
 
         public static Fraction operator /(Fraction num1, Fraction num2) //Метод який ретурнить частку
         {
@@ -73,6 +72,7 @@ namespace Main
             return new Fraction(numerator, denominator).reductionFraction();
         }
 
+
         public Fraction reductionFraction() //Метод який ретурнить скорочений дріб
         {
             int gcd = getGCD(numerator, denominator);
@@ -80,15 +80,96 @@ namespace Main
             return new Fraction(numerator / gcd, denominator / gcd);
         }
 
-        private static int getGCD(int num1, int num2) //Метод який ретурнить НСД
+
+        public static int getGCD(int num1, int num2) //Метод який ретурнить НСД
         {
             return num2 == 0 ? num1 : getGCD(num2, num1 % num2); //Люблю тернарний оператор
         }
 
 
-        private static int getLCM(int num1, int num2) //Метод який ретурнить НСК
+        public static int getLCM(int num1, int num2) //Метод який ретурнить НСК
         {
             return num1 * num2 / getGCD(num1, num2);
+        }
+
+
+        public static Fraction getFraction() //Метод який приймає ввід значень від юзера
+        {
+            string? inputFraction = Console.ReadLine(); //Треба було ще написати валідацію,але мені так лінь це робити
+
+            String[] inputSplit = inputFraction.Split("/"); //Запихуємо в масив знаменник та чисельник без символа "/"
+             
+            int denFra = Convert.ToInt32(inputSplit[0]);
+            int numFra = Convert.ToInt32(inputSplit[1]);
+
+            return new Fraction (denFra, numFra);
+        }
+
+        public static void Options(Fraction num1, Fraction num2, Fraction num3) //Метод для вибору дії
+        {
+            bool isCorrectInput = false;
+            do
+            {
+                ConsoleKeyInfo type = Console.ReadKey(true);
+                Console.Clear();
+                string? res;
+
+                switch (type.Key)
+                {
+                    case ConsoleKey.Add:
+                        res = (num1 + num2).ToString();
+                        Print(res);
+                        break;
+
+                    case ConsoleKey.Subtract:
+                        res = (num1 - num2).ToString();
+                        Print(res);
+                        break;
+
+                    case ConsoleKey.Multiply:
+                        res = (num1 * num2).ToString();
+                        Print(res);
+                        break;
+
+                    case ConsoleKey.Divide:
+                        res = (num1 / num2).ToString();
+                        Print(res);
+                        break;
+
+                    case ConsoleKey.R:
+                        res = (num3.reductionFraction()).ToString();
+                        Print(res);
+                        break;
+
+                    case ConsoleKey.E:
+                        Environment.Exit(0);
+                        break;
+
+                    default:
+                        Print("0");
+                        break;
+                }
+            } while (!isCorrectInput);
+        }
+
+        public static void Print(string result)
+        {
+            Console.WriteLine("###########################");
+            Console.WriteLine("###                     ###");
+            Console.WriteLine($"###            {result,-9}###");
+            Console.WriteLine("###                     ###");
+            Console.WriteLine("###########################");
+            Console.WriteLine("###########################");
+            Console.WriteLine("##|||##|||##|||##|||##|||##");
+            Console.WriteLine("#| + || - || * || / || R |#");
+            Console.WriteLine("##|||##|||##|||##|||##|||##");
+            Console.WriteLine("###########################");
+            Console.WriteLine("####|Placeholder|##########");
+            Console.WriteLine("####|Placeholder|##########");
+            Console.WriteLine("####|Placeholder|##########");
+            Console.WriteLine("###########################");
+            Console.WriteLine("##############|E - Exit|###");
+            Console.WriteLine("###########################");
         }
 
         public override string ToString() //Написав це аби в термінал виводило числа,а не "Main.Fraction"
@@ -97,7 +178,6 @@ namespace Main
             {
                 return "0";
             }
-
             if (denominator == 1)
             {
                 return numerator.ToString();
@@ -105,5 +185,6 @@ namespace Main
 
             return $"{numerator}/{denominator}";
         }
+
     }
 }
