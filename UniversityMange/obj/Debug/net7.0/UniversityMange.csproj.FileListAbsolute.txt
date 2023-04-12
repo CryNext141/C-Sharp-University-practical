@@ -1,0 +1,15 @@
+C:\Users\thelo\source\repos\UniversityMange\bin\Debug\net7.0\UniversityMange.exe
+C:\Users\thelo\source\repos\UniversityMange\bin\Debug\net7.0\UniversityMange.deps.json
+C:\Users\thelo\source\repos\UniversityMange\bin\Debug\net7.0\UniversityMange.runtimeconfig.json
+C:\Users\thelo\source\repos\UniversityMange\bin\Debug\net7.0\UniversityMange.dll
+C:\Users\thelo\source\repos\UniversityMange\bin\Debug\net7.0\UniversityMange.pdb
+C:\Users\thelo\source\repos\UniversityMange\obj\Debug\net7.0\UniversityMange.csproj.AssemblyReference.cache
+C:\Users\thelo\source\repos\UniversityMange\obj\Debug\net7.0\UniversityMange.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\thelo\source\repos\UniversityMange\obj\Debug\net7.0\UniversityMange.AssemblyInfoInputs.cache
+C:\Users\thelo\source\repos\UniversityMange\obj\Debug\net7.0\UniversityMange.AssemblyInfo.cs
+C:\Users\thelo\source\repos\UniversityMange\obj\Debug\net7.0\UniversityMange.csproj.CoreCompileInputs.cache
+C:\Users\thelo\source\repos\UniversityMange\obj\Debug\net7.0\UniversityMange.dll
+C:\Users\thelo\source\repos\UniversityMange\obj\Debug\net7.0\refint\UniversityMange.dll
+C:\Users\thelo\source\repos\UniversityMange\obj\Debug\net7.0\UniversityMange.pdb
+C:\Users\thelo\source\repos\UniversityMange\obj\Debug\net7.0\UniversityMange.genruntimeconfig.cache
+C:\Users\thelo\source\repos\UniversityMange\obj\Debug\net7.0\ref\UniversityMange.dll
