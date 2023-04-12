@@ -8,7 +8,7 @@
 
         public Student(int id, string name)
         {
-            Id = id;
+            ID = id;
             Name = name;
             Grades = new Dictionary<string, List<int>>();
         }
