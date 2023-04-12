@@ -1,11 +1,11 @@
-﻿using GroupModule;
+using GroupModule;
 using StudentModule;
 namespace UniversityModule
 {
     public class University
     {
-        private static int nextGroupId = 0;
-        private static int nextStudentId = 0;
+        private static int nextGroupID = 0;
+        private static int nextStudentID = 0;
 
         public string UniversityName { get; set; }
         public List<Group> Groups { get; set; }
@@ -19,14 +19,14 @@ namespace UniversityModule
         public void CreateGroup(string name)
         {
 
-            Group group = new Group(nextGroupId++, name);
+            Group group = new Group(nextGroupID++, name);
             Groups.Add(group);
-            Console.WriteLine($"Group created with ID: {group.Id}");
+            Console.WriteLine($"Group created with ID: {group.ID}");
         }
 
         public void DeleteGroup(int id)
         {
-            Group group = Groups.Find(g => g.Id == id);
+            Group group = Groups.Find(g => g.ID == id);
             if (group != null)
             {
                 Groups.Remove(group);
@@ -38,59 +38,59 @@ namespace UniversityModule
             }
         }
 
-        public void AddStudentToGroup(int groupId, string name)
+        public void AddStudentToGroup(int groupID, string name)
         {
-            Group group = Groups.Find(g => g.Id == groupId);
+            Group group = Groups.Find(g => g.ID == groupID);
             if (group != null)
             {
-                Student student = new Student(nextStudentId++, name);
+                Student student = new Student(nextStudentID++, name);
                 group.Students.Add(student);
-                Console.WriteLine($"Student added to group with ID: {student.Id}");
+                Console.WriteLine($"Student added to group with ID: {student.ID}");
             }
             else
             {
-                Console.WriteLine($"Group with ID: {groupId} not found");
+                Console.WriteLine($"Group with ID: {groupID} not found");
             }
         }
 
-        public void DeleteStudentFromGroup(int groupId, int studentId)
+        public void DeleteStudentFromGroup(int groupID, int studentID)
         {
-            Group group = Groups.Find(g => g.Id == groupId);
+            Group group = Groups.Find(g => g.ID == groupID);
             if (group != null)
             {
-                Student student = group.Students.Find(s => s.Id == studentId);
+                Student student = group.Students.Find(s => s.ID == studentID);
                 if (student != null)
                 {
                     group.Students.Remove(student);
-                    Console.WriteLine($"Student with ID: {studentId} deleted from group");
+                    Console.WriteLine($"Student with ID: {studentID} deleted from group");
                 }
                 else
                 {
-                    Console.WriteLine($"Student with ID: {studentId} not found in group");
+                    Console.WriteLine($"Student with ID: {studentID} not found in group");
                 }
             }
             else
             {
-                Console.WriteLine($"Group with ID: {groupId} not found");
+                Console.WriteLine($"Group with ID: {groupID} not found");
             }
         }
 
-        public void ChangeStudentName(int studentId, string newName)
+        public void ChangeStudentName(int studentID, string newName)
         {
             foreach (Group group in Groups)
             {
-                Student student = group.Students.Find(s => s.Id == studentId);
+                Student student = group.Students.Find(s => s.ID == studentID);
                 if (student != null)
                 {
                     student.Name = newName;
-                    Console.WriteLine($"Student with ID: {studentId} name changed to {newName}");
+                    Console.WriteLine($"Student with ID: {studentID} name changed to {newName}");
                     return;
                 }
             }
-            Console.WriteLine($"Student with ID: {studentId} not found");
+            Console.WriteLine($"Student with ID: {studentID} not found");
         }
 
-        public void AddGradeToStudent(int studentId, string subject, int grade)
+        public void AddGradeToStudent(int studentID, string subject, int grade)
         {
             if (grade < 0 || grade > 5)
             {
@@ -100,7 +100,7 @@ namespace UniversityModule
 
             foreach (Group group in Groups)
             {
-                Student student = group.Students.Find(s => s.Id == studentId);
+                Student student = group.Students.Find(s => s.ID == studentID);
                 if (student != null)
                 {
                     if (!group.Subjects.Contains(subject))
@@ -118,13 +118,13 @@ namespace UniversityModule
                 }
                 else
                 {
-                    Console.WriteLine($"Student with ID: {studentId} not found");
+                    Console.WriteLine($"Student with ID: {studentID} not found");
                 }
             }
         }
-        public void AddSubjectToGroup(int groupId, string subject)
+        public void AddSubjectToGroup(int groupID, string subject)
         {
-            Group group = Groups.Find(g => g.Id == groupId);
+            Group group = Groups.Find(g => g.ID == groupID);
             if (group != null)
             {
                 if (!group.Subjects.Contains(subject))
@@ -134,13 +134,13 @@ namespace UniversityModule
             }
             else
             {
-                Console.WriteLine($"Group with ID: {groupId} not found");
+                Console.WriteLine($"Group with ID: {groupID} not found");
             }
         }
 
-        public void RemoveSubjectFromGroup(int groupId, string subject)
+        public void RemoveSubjectFromGroup(int groupID, string subject)
         {
-            Group group = Groups.Find(g => g.Id == groupId);
+            Group group = Groups.Find(g => g.ID == groupID);
             if (group != null)
             {
                 if (group.Subjects.Contains(subject))
@@ -150,20 +150,20 @@ namespace UniversityModule
             }
             else
             {
-                Console.WriteLine($"Group with ID: {groupId} not found");
+                Console.WriteLine($"Group with ID: {groupID} not found");
             }
         }
 
-        public int GetNumberOfStudentsInGroup(int groupId)
+        public int GetNumberOfStudentsInGroup(int groupID)
         {
-            Group group = Groups.Find(g => g.Id == groupId);
+            Group group = Groups.Find(g => g.ID == groupID);
             if (group != null)
             {
                 return group.Students.Count;
             }
             else
             {
-                Console.WriteLine($"Group with ID: {groupId} not found");
+                Console.WriteLine($"Group with ID: {groupID} not found");
                 return 0;
             }
         }
@@ -178,14 +178,14 @@ namespace UniversityModule
             return count;
         }
 
-        public void DisplayStudentInformation(int studentId)
+        public void DisplayStudentInformation(int studentID)
         {
             foreach (Group group in Groups)
             {
-                Student student = group.Students.Find(s => s.Id == studentId);
+                Student student = group.Students.Find(s => s.ID == studentID);
                 if (student != null)
                 {
-                    Console.WriteLine($"ID: {student.Id}");
+                    Console.WriteLine($"ID: {student.ID}");
                     Console.WriteLine($"Name: {student.Name}");
                     Console.WriteLine("Grades:");
                     foreach (KeyValuePair<string, List<int>> entry in student.Grades)
@@ -200,7 +200,7 @@ namespace UniversityModule
                     return;
                 }
             }
-            Console.WriteLine($"Student with ID: {studentId} not found");
+            Console.WriteLine($"Student with ID: {studentID} not found");
         }
 
         public void DisplayUniversityInformation()
@@ -210,7 +210,7 @@ namespace UniversityModule
             Console.WriteLine($"Total number of students: {GetTotalNumberOfStudents()}");
             foreach (Group group in Groups)
             {
-                Console.WriteLine($"Group ID: {group.Id}");
+                Console.WriteLine($"Group ID: {group.ID}");
                 Console.WriteLine($"Group name: {group.Name}");
                 Console.WriteLine($"Number of students: {group.Students.Count}");
                 Console.WriteLine("Subjects:");
